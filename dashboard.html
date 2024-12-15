@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Detection Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <h1>Flood Detection Dashboard</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
+    </header>
+
+    <!-- Helpline Section -->
+    <div class="helpline">
+        <marquee><p>For immediate assistance, call the <strong>Disaster Helpline: 0265-242 7592, Toll-Free - 1077</strong></p></marquee>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#">SMS Signup</a></li>
+                <li><a href="volunteer_signup.html">Volunteer Signup</a></li>
+                <li><a href="donation.html">Donate</a></li>
+                <li><a href="#">Educational Videos</a></li>
+                <li><a href="#">Rainfall Status</a></li>
+                <li><a href="#">Helpline Numbers</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <section class="content">
+            <h2>Flood Affected Areas</h2>
+            <table id="dataGrid">
+                <tr>
+                    <th>Location</th>
+                    <th>Helpline</th>
+                    <th>Rainfall (cm)</th>
+                    <th>Date/Time</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Fatehgunj</td>
+                    <td>+02345 67891</td>
+                    <td>72</td>
+                    <td>13-12-24 17:03</td>
+                    <td class="status" data-status="danger">Danger</td>
+                </tr>
+                <tr>
+                    <td>Alkapuri</td>
+                    <td>+02345 67892</td>
+                    <td>45</td>
+                    <td>13-12-24 17:10</td>
+                    <td class="status" data-status="warning">Warning</td>
+                </tr>
+                <tr>
+                    <td>Akota</td>
+                    <td>+02345 67893</td>
+                    <td>20</td>
+                    <td>13-12-24 17:20</td>
+                    <td class="status" data-status="safe">Safe</td>
+                </tr>
+            </table>
+        </section>
+        
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <div class="map-section">
+                <div id="map" class="map-container"></div>
+                <p>Currently, you are safe but please look out for updates.</p>
+            </div>
+            <div class="safety-tips">
+                <h3>Safety Tips</h3>
+                <ul>
+                    <li>Follow evacuation orders by authorities.</li>
+                    <li>Avoid floodwaters; even shallow water is dangerous.</li>
+                    <li>Seek higher ground.</li>
+                    <li>Stay informed with battery-powered radios.</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    
+
+    <footer>
+        &copy; KHOJ Winter School: Iot Based Flood Detection System. All rights reserved.
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
+    
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
+    
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+    
+        // Update the row colors based on the status column
+        const updateRowColors = () => {
+            const rows = document.querySelectorAll('#dataGrid tr');
+    
+            rows.forEach((row, index) => {
+                if (index === 0) return; // Skip the header row
+    
+                const statusCell = row.cells[4]; // The status column
+                const status = statusCell.dataset.status;
+    
+                if (status === "danger") {
+                    row.style.backgroundColor = "rgba(255, 0, 0, 0.2)"; // Light red
+                } else if (status === "warning") {
+                    row.style.backgroundColor = "rgba(255, 165, 0, 0.2)"; // Light orange
+                } else if (status === "safe") {
+                    row.style.backgroundColor = "rgba(0, 128, 0, 0.2)"; // Light green
+                } else {
+                    row.style.backgroundColor = ""; // Default for undefined statuses
+                }
+            });
+        };
+    
+        // Initial row color update
+        updateRowColors();
+    
+        // Update row colors whenever the grid is modified
+        const observer = new MutationObserver(() => {
+            updateRowColors();
+        });
+    
+        observer.observe(document.getElementById('dataGrid'), {
+            childList: true,
+            subtree: true,
+        });
+    
+        // Leaflet.js Map Setup
+        const map = L.map('map').setView([22.3072, 73.1812], 13); // Vadodara coordinates
+    
+        // Add map tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+    
+        // Function to update map markers dynamically
+        const updateMap = () => {
+            const rows = document.querySelectorAll('#dataGrid tr');
+            const zones = [];
+    
+            rows.forEach((row, index) => {
+                if (index === 0) return; // Skip header row
+    
+                const location = row.cells[0].textContent.trim();
+                const rainfall = parseInt(row.cells[2].textContent, 10);
+                const status = row.cells[4].dataset.status;
+    
+                const coords = getCoordinates(location); // Get coordinates for the location
+    
+                if (coords) {
+                    zones.push({ location, rainfall, status, coords });
+                }
+            });
+    
+            // Clear existing layers (markers or rectangles)
+            map.eachLayer((layer) => {
+                if (layer.options && layer.options.pane === "markerPane") map.removeLayer(layer);
+            });
+    
+            // Add rectangles for each zone
+            zones.forEach((zone) => {
+                const color = zone.status === "danger" ? "red" :
+                              zone.status === "warning" ? "orange" : "green";
+    
+                const [lat, lng] = zone.coords;
+    
+                // Define rectangle bounds
+                const bounds = [
+                    [lat - 0.002, lng - 0.002], // Southwest corner
+                    [lat + 0.002, lng + 0.002]  // Northeast corner
+                ];
+    
+                // Add rectangle to the map
+                L.rectangle(bounds, {
+                    color,
+                    fillColor: color,
+                    fillOpacity: 0.5,
+                })
+                .addTo(map)
+                .bindPopup(`${zone.location}: <strong>${zone.status.toUpperCase()}</strong>`);
+            });
+        };
+    
+        // Example function for getting coordinates based on location
+        const getCoordinates = (location) => {
+            const locations = {
+                "Fatehgunj": [22.3072, 73.1812],
+                "Alkapuri": [22.3120, 73.1788],
+                "Akota": [22.3074, 73.1878],
+            };
+            return locations[location] || null;
+        };
+    
+        // Initial map update
+        updateMap();
+    </script>
+    
+    
+</body>
+</html>

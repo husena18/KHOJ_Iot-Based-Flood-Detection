@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Background Image and Opacity for the body */
+        body {
+            background-image: url('your-image-url.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Dark Mode Styling */
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        /* Marquee */
+        .helpline {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .helpline p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* Donation Container Styling */
+        .donation-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Light white background with opacity */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .donation-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('your-image-url.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; /* Light opacity for the background image */
+            z-index: -1; /* Ensures the image stays behind the content */
+        }
+
+        .donation-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .donation-container p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .donation-form .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .donation-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .donation-form input, .donation-form select, .donation-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .donation-form input:focus, .donation-form select:focus, .donation-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+        }
+
+        .donation-form .button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .donation-form .button:hover {
+            background-color: #357abf;
+        }
+
+        @media (max-width: 768px) {
+            .donation-container {
+                padding: 15px;
+            }
+
+            .donation-form input, .donation-form select, .donation-form textarea {
+                font-size: 14px;
+            }
+        }
+
+        /* Dark Mode Customizations */
+        body.dark-mode .donation-container {
+            background-color: rgba(33, 33, 33, 0.8);
+        }
+
+        body.dark-mode .donation-form input,
+        body.dark-mode .donation-form select,
+        body.dark-mode .donation-form textarea {
+            background-color: #333;
+            color: white;
+            border-color: #444;
+        }
+
+        body.dark-mode .donation-form .button {
+            background-color: #444;
+        }
+
+        body.dark-mode .donation-form .button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Donate to Support Flood-Affected Areas</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
+    </header>
+
+
+    <main class="donation-container">
+        <h2>Your Contribution Can Make a Difference</h2>
+        <p>Please fill in the details below to donate. Every contribution, no matter the amount, helps those in need.</p>
+
+        <form id="donationForm" class="donation-form">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Donation Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter the amount to donate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="">Select a payment method</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="upi">UPI platform</option>
+                    <option value="bank-transfer">Bank Transfer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message (Optional):</label>
+                <textarea id="message" name="message" rows="4" placeholder="Include a message or note for the recipient (optional)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <center>
+                    <button type="submit" class="button">Donate Now</button>
+                </center>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        &copy; KHOJ Winter School: IoT Based Flood Detection System. All rights reserved.
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
+
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+
+        // Form Submission Handling
+        const donationForm = document.getElementById('donationForm');
+
+        donationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(donationForm);
+            const data = Object.fromEntries(formData.entries());
+
+            alert(`Thank you, ${data.name}! Your donation of ₹${data.amount} has been received. We will contact you soon.`);
+
+            donationForm.reset();
+        });
+    </script>
+</body>
+</html>
