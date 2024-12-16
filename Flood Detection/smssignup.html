@@ -3,44 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation Page</title>
+    <title>Flood Alert Signup</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Background Image and Opacity for the body */
+        /* General Styling */
         body {
-            background-image: url('your-image-url.jpg'); /* Add your image URL here */
+            background-image: url('your-image-url.jpg'); /* Add your background image URL */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            position: relative;
-            overflow-x: hidden;
-            margin: 0;
             font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
         }
 
-        /* Dark Mode Styling */
         body.dark-mode {
             background-color: #121212;
             color: white;
         }
 
-        /* Marquee */
-        .helpline {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            text-align: center;
-            color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 10;
-        }
-
-        /* Donation Container Styling */
-        .donation-container {
+        .signup-container {
             max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.8);
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -49,26 +34,26 @@
             z-index: 1;
         }
 
-        .donation-container h2 {
+        .signup-container h2 {
             margin-bottom: 15px;
         }
 
-        .donation-container p {
+        .signup-container p {
             margin-bottom: 20px;
         }
 
-        .donation-form .form-group {
+        .signup-form .form-group {
             margin-bottom: 15px;
             text-align: left;
         }
 
-        .donation-form label {
+        .signup-form label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
 
-        .donation-form input, .donation-form textarea {
+        .signup-form input, .signup-form textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -76,13 +61,13 @@
             font-size: 16px;
         }
 
-        .donation-form input:focus, .donation-form textarea:focus {
+        .signup-form input:focus, .signup-form textarea:focus {
             outline: none;
             border-color: #4a90e2;
             box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
         }
 
-        .donation-form .button {
+        .signup-form .button {
             background-color: #4a90e2;
             color: white;
             padding: 10px 20px;
@@ -93,54 +78,41 @@
             transition: background-color 0.3s;
         }
 
-        .donation-form .button:hover {
+        .signup-form .button:hover {
             background-color: #357abf;
         }
 
-        /* QR Code Styling */
-        .qr-container {
+        .thank-you-message {
             display: none;
-            text-align: center;
-        }
-
-        .qr-container img {
-            width: 200px;
-            height: auto;
             margin-top: 20px;
         }
 
-        .qr-container p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
         @media (max-width: 768px) {
-            .donation-container {
+            .signup-container {
                 padding: 15px;
             }
 
-            .donation-form input, .donation-form textarea {
+            .signup-form input, .signup-form textarea {
                 font-size: 14px;
             }
         }
 
         /* Dark Mode Customizations */
-        body.dark-mode .donation-container {
+        body.dark-mode .signup-container {
             background-color: rgba(33, 33, 33, 0.8);
         }
 
-        body.dark-mode .donation-form input,
-        body.dark-mode .donation-form textarea {
+        body.dark-mode .signup-form input, body.dark-mode .signup-form textarea {
             background-color: #333;
             color: white;
             border-color: #444;
         }
 
-        body.dark-mode .donation-form .button {
+        body.dark-mode .signup-form .button {
             background-color: #444;
         }
 
-        body.dark-mode .donation-form .button:hover {
+        body.dark-mode .signup-form .button:hover {
             background-color: #666;
         }
     </style>
@@ -150,47 +122,41 @@
     <header>
         <a href="dashboard.html" class="back-arrow">
             <img src="backarr50.png"></a>
-        <h1>Donate to Support Flood-Affected Areas</h1>
+        <h1>Flood Alert Signup</h1>
         <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
 
-    <main class="donation-container">
-        <h2>Your Contribution Can Make a Difference</h2>
-        <p>Please fill in the details below to donate. Every contribution, no matter the amount, helps those in need.</p>
+    <main class="signup-container">
+        <h2>Sign Up for Flood Alerts</h2>
+        <p>Enter your details below to receive SMS alerts about floods in your area.</p>
 
-        <!-- Donation Form -->
-        <form id="donationForm" class="donation-form">
+        <!-- Signup Form -->
+        <form id="signupForm" class="signup-form">
             <div class="form-group">
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter your full name" required>
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{10}" title="Enter a valid 10-digit phone number">
             </div>
 
             <div class="form-group">
-                <label for="amount">Donation Amount:</label>
-                <input type="number" id="amount" name="amount" placeholder="Enter the amount to donate" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Message (Optional):</label>
-                <textarea id="message" name="message" rows="4" placeholder="Include a message or note for the recipient (optional)"></textarea>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
             </div>
 
             <div class="form-group">
                 <center>
-                    <button type="submit" class="button">Donate Now</button>
+                    <button type="submit" class="button">Sign Up</button>
                 </center>
             </div>
         </form>
 
-        <!-- QR Code Container -->
-        <div class="qr-container" id="qrContainer">
-            <p>Scan the QR Code below to complete your donation:</p>
-            <img src="qr.jpg" alt="QR Code" id="qrCode">
+        <!-- Thank You Message -->
+        <div class="thank-you-message" id="thankYouMessage">
+            <p>Thank you for signing up, <span id="userName"></span>! You will receive SMS alerts about floods in your area at <span id="userPhone"></span>.</p>
         </div>
     </main>
 
@@ -201,8 +167,10 @@
     <script>
         const modeToggle = document.getElementById("modeSwitch");
         const body = document.body;
-        const donationForm = document.getElementById('donationForm');
-        const qrContainer = document.getElementById('qrContainer');
+        const signupForm = document.getElementById('signupForm');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+        const userName = document.getElementById('userName');
+        const userPhone = document.getElementById('userPhone');
 
         // Handle Dark Mode
         if (localStorage.getItem("theme") === "dark") {
@@ -216,13 +184,20 @@
             modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
         });
 
-        // Handle Form Submission
-        donationForm.addEventListener('submit', (e) => {
+        // Form Submission Handling
+        signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Hide form and display QR code
-            donationForm.style.display = 'none';
-            qrContainer.style.display = 'block';
+            const formData = new FormData(signupForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Update the thank-you message with user details
+            userName.textContent = data.name;
+            userPhone.textContent = data.phone;
+
+            // Hide form and display thank-you message
+            signupForm.style.display = 'none';
+            thankYouMessage.style.display = 'block';
         });
     </script>
 </body>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Safety Educational Videos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header.dark-mode {
+            background-color: #333;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .mode-toggle {
+            background: none;
+            color: white;
+            border: 1px solid white;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Grid for Video Cards */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: start; /* Align videos to the start of their columns */
+        }
+
+        .video-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .video-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-card iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .video-card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .video-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer.dark-mode {
+            background-color: #333;
+        }
+
+        /* Dark Mode Customizations */
+        body.dark-mode .video-card {
+            background-color: #333;
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .video-card p {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="dashboard.html" class="back-arrow">
+            <img src="backarr50.png"></a>
+        <h1>Flood Safety Educational Videos</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
+    </header>
+
+    <main>
+        <h2>Learn How to Stay Safe During Floods</h2>
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/xI3wCQ-7DX4" allowfullscreen></iframe>
+                <h3>Understanding Floods</h3>
+                <p>Learn about the causes and impact of floods, and why they occur in certain regions.</p>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/M4z6kn24zE4" allowfullscreen></iframe>
+                <h3>Flood Safety Tips</h3>
+                <p>Essential safety measures to take during floods to protect yourself and your loved ones.</p>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/vjH2YRRsF5M" allowfullscreen></iframe>
+                <h3>Emergency Kit Preparation</h3>
+                <p>Learn how to prepare an emergency kit for flood situations.</p>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/5MUVRGzT6dk" allowfullscreen></iframe>
+                <h3>Helping Others During Floods</h3>
+                <p>Understand how you can help others in your community during flood emergencies.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 KHOJ Winter School: IoT Based Flood Detection System. All rights reserved.
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
+
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+    </script>
+
+</body>
+</html>

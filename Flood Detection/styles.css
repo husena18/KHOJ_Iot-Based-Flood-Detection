@@ -278,7 +278,7 @@ table .status {
     background-image: url('map.png'); /* Add your image URL here */
     background-size: cover;
     background-position: center;
-    opacity: 1; /* Light opacity for the background image */
+    opacity: 0.2; /* Light opacity for the background image */
     z-index: -1; /* Ensures the image stays behind the content */
 }
 
