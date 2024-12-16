@@ -36,27 +36,57 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Updated Header Styling for Alignment */
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--header-background);
     color: white;
-    text-align: center;
-    padding: 15px 0;
+    padding: 15px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
 }
 
 header h1 {
-    font-size: 26px;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 22px;
     font-weight: bold;
+    margin: 0;
 }
 
+/* Back Arrow Styling */
+.back-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.arrow-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.back-arrow:hover .arrow-icon {
+    transform: translateX(-5px);
+}
+
+
 .mode-toggle {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
     background-color: var(--primary-color);
     color: white;
-    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -66,6 +96,7 @@ header h1 {
 .mode-toggle:hover {
     background-color: #357abf;
 }
+
 
 footer {
     text-align: center;
