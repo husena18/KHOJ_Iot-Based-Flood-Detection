@@ -36,16 +36,11 @@
             z-index: 10;
         }
 
-        .helpline p {
-            margin: 0;
-            font-size: 16px;
-        }
-
         /* Donation Container Styling */
         .donation-container {
             max-width: 600px;
             margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.8); /* Light white background with opacity */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -54,28 +49,12 @@
             z-index: 1;
         }
 
-        .donation-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('your-image-url.jpg'); /* Add your image URL here */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2; /* Light opacity for the background image */
-            z-index: -1; /* Ensures the image stays behind the content */
-        }
-
         .donation-container h2 {
-            color: var(--primary-color);
             margin-bottom: 15px;
         }
 
         .donation-container p {
             margin-bottom: 20px;
-            color: var(--text-color);
         }
 
         .donation-form .form-group {
@@ -89,7 +68,7 @@
             font-weight: bold;
         }
 
-        .donation-form input, .donation-form select, .donation-form textarea {
+        .donation-form input, .donation-form textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -97,14 +76,14 @@
             font-size: 16px;
         }
 
-        .donation-form input:focus, .donation-form select:focus, .donation-form textarea:focus {
+        .donation-form input:focus, .donation-form textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: #4a90e2;
             box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
         }
 
         .donation-form .button {
-            background-color: var(--primary-color);
+            background-color: #4a90e2;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -118,12 +97,29 @@
             background-color: #357abf;
         }
 
+        /* QR Code Styling */
+        .qr-container {
+            display: none;
+            text-align: center;
+        }
+
+        .qr-container img {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .qr-container p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
             .donation-container {
                 padding: 15px;
             }
 
-            .donation-form input, .donation-form select, .donation-form textarea {
+            .donation-form input, .donation-form textarea {
                 font-size: 14px;
             }
         }
@@ -134,7 +130,6 @@
         }
 
         body.dark-mode .donation-form input,
-        body.dark-mode .donation-form select,
         body.dark-mode .donation-form textarea {
             background-color: #333;
             color: white;
@@ -157,11 +152,11 @@
         <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
 
-
     <main class="donation-container">
         <h2>Your Contribution Can Make a Difference</h2>
         <p>Please fill in the details below to donate. Every contribution, no matter the amount, helps those in need.</p>
 
+        <!-- Donation Form -->
         <form id="donationForm" class="donation-form">
             <div class="form-group">
                 <label for="name">Full Name:</label>
@@ -179,16 +174,6 @@
             </div>
 
             <div class="form-group">
-                <label for="payment-method">Payment Method:</label>
-                <select id="payment-method" name="payment-method" required>
-                    <option value="">Select a payment method</option>
-                    <option value="credit-card">Credit Card</option>
-                    <option value="upi">UPI platform</option>
-                    <option value="bank-transfer">Bank Transfer</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="message">Message (Optional):</label>
                 <textarea id="message" name="message" rows="4" placeholder="Include a message or note for the recipient (optional)"></textarea>
             </div>
@@ -199,6 +184,12 @@
                 </center>
             </div>
         </form>
+
+        <!-- QR Code Container -->
+        <div class="qr-container" id="qrContainer">
+            <p>Scan the QR Code below to complete your donation:</p>
+            <img src="D:\NUV\KHOJ\KHOJ_Iot-Based-Flood-Detection\images\qr.jpg" alt="QR Code" id="qrCode">
+        </div>
     </main>
 
     <footer>
@@ -208,6 +199,8 @@
     <script>
         const modeToggle = document.getElementById("modeSwitch");
         const body = document.body;
+        const donationForm = document.getElementById('donationForm');
+        const qrContainer = document.getElementById('qrContainer');
 
         // Handle Dark Mode
         if (localStorage.getItem("theme") === "dark") {
@@ -221,18 +214,13 @@
             modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
         });
 
-        // Form Submission Handling
-        const donationForm = document.getElementById('donationForm');
-
+        // Handle Form Submission
         donationForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const formData = new FormData(donationForm);
-            const data = Object.fromEntries(formData.entries());
-
-            alert(`Thank you, ${data.name}! Your donation of ₹${data.amount} has been received. We will contact you soon.`);
-
-            donationForm.reset();
+            // Hide form and display QR code
+            donationForm.style.display = 'none';
+            qrContainer.style.display = 'block';
         });
     </script>
 </body>
