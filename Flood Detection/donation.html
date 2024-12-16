@@ -5,145 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Page</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Background Image and Opacity for the body */
-        body {
-            background-image: url('your-image-url.jpg'); /* Add your image URL here */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            overflow-x: hidden;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Dark Mode Styling */
-        body.dark-mode {
-            background-color: #121212;
-            color: white;
-        }
-
-        /* Marquee */
-        .helpline {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            text-align: center;
-            color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 10;
-        }
-
-        /* Donation Container Styling */
-        .donation-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .donation-container h2 {
-            margin-bottom: 15px;
-        }
-
-        .donation-container p {
-            margin-bottom: 20px;
-        }
-
-        .donation-form .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .donation-form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .donation-form input, .donation-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .donation-form input:focus, .donation-form textarea:focus {
-            outline: none;
-            border-color: #4a90e2;
-            box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
-        }
-
-        .donation-form .button {
-            background-color: #4a90e2;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .donation-form .button:hover {
-            background-color: #357abf;
-        }
-
-        /* QR Code Styling */
-        .qr-container {
-            display: none;
-            text-align: center;
-        }
-
-        .qr-container img {
-            width: 200px;
-            height: auto;
-            margin-top: 20px;
-        }
-
-        .qr-container p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .donation-container {
-                padding: 15px;
-            }
-
-            .donation-form input, .donation-form textarea {
-                font-size: 14px;
-            }
-        }
-
-        /* Dark Mode Customizations */
-        body.dark-mode .donation-container {
-            background-color: rgba(33, 33, 33, 0.8);
-        }
-
-        body.dark-mode .donation-form input,
-        body.dark-mode .donation-form textarea {
-            background-color: #333;
-            color: white;
-            border-color: #444;
-        }
-
-        body.dark-mode .donation-form .button {
-            background-color: #444;
-        }
-
-        body.dark-mode .donation-form .button:hover {
-            background-color: #666;
-        }
-    </style>
+    
 </head>
 <body>
 
@@ -153,6 +15,11 @@
         <h1>Donate to Support Flood-Affected Areas</h1>
         <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
+
+    <!-- Helpline Section -->
+    <div class="helpline">
+        <marquee><p>For immediate assistance, call the <strong>Disaster Helpline: 0265-242 7592, Toll-Free - 1077</strong></p></marquee>
+    </div>
 
     <main class="donation-container">
         <h2>Your Contribution Can Make a Difference</h2>

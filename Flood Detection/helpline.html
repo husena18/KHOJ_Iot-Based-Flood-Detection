@@ -5,166 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vadodara Emergency Helplines</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: white;
-        }
-
-        header {
-            background-color: #4a90e2;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        header .mode-toggle {
-            background: none;
-            color: white;
-            border: 1px solid white;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Table Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        table th, table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #4a90e2;
-            color: white;
-        }
-
-        table tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        table tr.dark-mode:hover {
-            background-color: #333;
-        }
-
-        table td a {
-            color: #4a90e2;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        table td a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            text-align: center;
-            background-color: #4a90e2;
-            color: white;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-
-        footer.dark-mode {
-            background-color: #333;
-        }
-    </style>
 </head>
 <body>
 
     <header>
         <a href="dashboard.html" class="back-arrow">
-            <img src="backarr50.png"></a>
+            <img src="backarr50.png" alt="Back"></a>
         <h1>Vadodara Emergency Helpline Numbers</h1>
         <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
 
     <main>
         <h2>Emergency Contact Numbers for Flood-Affected Areas</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Area</th>
-                    <th>Helpline Number</th>
-                    <th>Alternate Contact</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Fatehgunj</td>
-                    <td><a href="tel:+911234567890">+91 12345 67890</a></td>
-                    <td><a href="tel:+911987654321">+91 19876 54321</a></td>
-                </tr>
-                <tr>
-                    <td>Alkapuri</td>
-                    <td><a href="tel:+911234567891">+91 12345 67891</a></td>
-                    <td><a href="tel:+911987654322">+91 19876 54322</a></td>
-                </tr>
-                <tr>
-                    <td>Akota</td>
-                    <td><a href="tel:+911234567892">+91 12345 67892</a></td>
-                    <td><a href="tel:+911987654323">+91 19876 54323</a></td>
-                </tr>
-                <tr>
-                    <td>Manjalpur</td>
-                    <td><a href="tel:+911234567893">+91 12345 67893</a></td>
-                    <td><a href="tel:+911987654324">+91 19876 54324</a></td>
-                </tr>
-                <tr>
-                    <td>Karelibaug</td>
-                    <td><a href="tel:+911234567894">+91 12345 67894</a></td>
-                    <td><a href="tel:+911987654325">+91 19876 54325</a></td>
-                </tr>
-                <tr>
-                    <td>Gotri</td>
-                    <td><a href="tel:+911234567895">+91 12345 67895</a></td>
-                    <td><a href="tel:+911987654326">+91 19876 54326</a></td>
-                </tr>
-                <tr>
-                    <td>Waghodia</td>
-                    <td><a href="tel:+911234567896">+91 12345 67896</a></td>
-                    <td><a href="tel:+911987654327">+91 19876 54327</a></td>
-                </tr>
-            </tbody>
-        </table>
+
+        <!-- Modern Table Design (Card-like Layout) -->
+        <div class="table-container">
+            <div class="card">
+                <h3>Fatehgunj</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567890">+91 12345 67890</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654321">+91 19876 54321</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Alkapuri</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567891">+91 12345 67891</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654322">+91 19876 54322</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Akota</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567892">+91 12345 67892</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654323">+91 19876 54323</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Manjalpur</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567893">+91 12345 67893</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654324">+91 19876 54324</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Karelibaug</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567894">+91 12345 67894</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654325">+91 19876 54325</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Gotri</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567895">+91 12345 67895</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654326">+91 19876 54326</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Waghodia</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567896">+91 12345 67896</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654327">+91 19876 54327</a>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
