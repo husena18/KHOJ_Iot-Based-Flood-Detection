@@ -53,7 +53,7 @@
             font-weight: bold;
         }
 
-        .signup-form input, .signup-form textarea {
+        .signup-form input, .signup-form select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -61,7 +61,7 @@
             font-size: 16px;
         }
 
-        .signup-form input:focus, .signup-form textarea:focus {
+        .signup-form input:focus, .signup-form select:focus {
             outline: none;
             border-color: #4a90e2;
             box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
@@ -92,7 +92,7 @@
                 padding: 15px;
             }
 
-            .signup-form input, .signup-form textarea {
+            .signup-form input, .signup-form select {
                 font-size: 14px;
             }
         }
@@ -102,7 +102,7 @@
             background-color: rgba(33, 33, 33, 0.8);
         }
 
-        body.dark-mode .signup-form input, body.dark-mode .signup-form textarea {
+        body.dark-mode .signup-form input, body.dark-mode .signup-form select {
             background-color: #333;
             color: white;
             border-color: #444;
@@ -121,15 +121,15 @@
 
     <header>
         <a href="dashboard.html" class="back-arrow">
-            <img src="backarr50.png"></a>
+            <img src="backarr50.png" alt="Back Arrow"></a>
         <h1>Flood Alert Signup</h1>
         <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
 
-        <!-- Helpline Section -->
-        <div class="helpline">
-            <marquee><p>For immediate assistance, call the <strong>Disaster Helpline: 0265-242 7592, Toll-Free - 1077</strong></p></marquee>
-        </div>
+    <!-- Helpline Section -->
+    <div class="helpline">
+        <marquee><p>For immediate assistance, call the <strong>Disaster Helpline: 0265-242 7592, Toll-Free - 1077</strong></p></marquee>
+    </div>
 
     <main class="signup-container">
         <h2>Sign Up for Flood Alerts</h2>
@@ -148,8 +148,23 @@
             </div>
 
             <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+                <label for="address">Select Your Area:</label>
+                <select id="address" name="address" required>
+                    <option value="" disabled selected>Select your area</option>
+                    <option value="Area 1">Fatehgunj</option>
+                    <option value="Area 2">Akota</option>
+                    <option value="Area 3">Alkapuri</option>
+                    <option value="Area 4">Sayajiganj</option>
+                    <option value="Area 5">Sama</option>
+                    <option value="Area 6">Mujmahuda</option>
+                    <option value="Area 7">vadsar</option>
+                    <option value="Area 8">Kalali</option>
+                    <option value="Area 9">Karelibaug</option>
+                    <option value="Area 10">Harni</option>
+                    <option value="Area 6">Jetalpur</option>
+                    <option value="Area 7">Pratapganj</option>
+                    <option value="Area 8">Manjalpur</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -193,12 +208,12 @@
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const formData = new FormData(signupForm);
-            const data = Object.fromEntries(formData.entries());
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
 
             // Update the thank-you message with user details
-            userName.textContent = data.name;
-            userPhone.textContent = data.phone;
+            userName.textContent = name;
+            userPhone.textContent = phone;
 
             // Hide form and display thank-you message
             signupForm.style.display = 'none';
