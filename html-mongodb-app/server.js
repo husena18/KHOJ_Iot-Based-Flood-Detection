@@ -50,6 +50,28 @@ app.post('/post', async (req, res) => {
     }
 });
 
+// Fetch phone numbers grouped and sorted by area
+app.get('/numbers-by-area', async (req, res) => {
+    try {
+        const result = await Users.aggregate([
+            {
+                $group: {
+                    _id: "$address", // Group by address (area)
+                    phoneNumbers: { $push: "$number" } // Collect all phone numbers for the area
+                }
+            },
+            {
+                $sort: { _id: 1 } // Sort areas alphabetically
+            }
+        ]);
+
+        res.json(result); // Return the result as a JSON response
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).send("Error fetching data");
+    }
+});
+
 // Start the server
 app.listen(port, () => {
     console.log("Server started on port", port)
