@@ -53,7 +53,7 @@
             font-weight: bold;
         }
 
-        .signup-form input, .signup-form textarea {
+        .signup-form input, .signup-form select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -61,7 +61,7 @@
             font-size: 16px;
         }
 
-        .signup-form input:focus, .signup-form textarea:focus {
+        .signup-form input:focus, .signup-form select:focus {
             outline: none;
             border-color: #4a90e2;
             box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
@@ -92,20 +92,44 @@
                 padding: 15px;
             }
 
-            .signup-form input, .signup-form textarea {
+            .signup-form input, .signup-form select {
                 font-size: 14px;
             }
         }
-    </style>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js"></script>
+        /* Dark Mode Customizations */
+        body.dark-mode .signup-container {
+            background-color: rgba(33, 33, 33, 0.8);
+        }
+
+        body.dark-mode .signup-form input, body.dark-mode .signup-form select {
+            background-color: #333;
+            color: white;
+            border-color: #444;
+        }
+
+        body.dark-mode .signup-form .button {
+            background-color: #444;
+        }
+
+        body.dark-mode .signup-form .button:hover {
+            background-color: #666;
+        }
+    </style>
 </head>
 <body>
+
     <header>
+        <a href="dashboard.html" class="back-arrow">
+            <img src="backarr50.png" alt="Back Arrow"></a>
         <h1>Flood Alert Signup</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
+
+    <!-- Helpline Section -->
+    <div class="helpline">
+        <marquee><p>For immediate assistance, call the <strong>Disaster Helpline: 0265-242 7592, Toll-Free - 1077</strong></p></marquee>
+    </div>
 
     <main class="signup-container">
         <h2>Sign Up for Flood Alerts</h2>
@@ -124,12 +148,29 @@
             </div>
 
             <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+                <label for="address">Select Your Area:</label>
+                <select id="address" name="address" required>
+                    <option value="" disabled selected>Select your area</option>
+                    <option value="Area 1">Fatehgunj</option>
+                    <option value="Area 2">Akota</option>
+                    <option value="Area 3">Alkapuri</option>
+                    <option value="Area 4">Sayajiganj</option>
+                    <option value="Area 5">Sama</option>
+                    <option value="Area 6">Mujmahuda</option>
+                    <option value="Area 7">vadsar</option>
+                    <option value="Area 8">Kalali</option>
+                    <option value="Area 9">Karelibaug</option>
+                    <option value="Area 10">Harni</option>
+                    <option value="Area 6">Jetalpur</option>
+                    <option value="Area 7">Pratapganj</option>
+                    <option value="Area 8">Manjalpur</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <button type="submit" class="button">Sign Up</button>
+                <center>
+                    <button type="submit" class="button">Sign Up</button>
+                </center>
             </div>
         </form>
 
@@ -140,68 +181,44 @@
     </main>
 
     <footer>
-        &copy; 2024 Flood Alert System. All rights reserved.
+        &copy; KHOJ Winter School: IoT Based Flood Detection System. All rights reserved.
     </footer>
 
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBwisGZs0XYDdim24dEs6OPOP70X2_kB-E",
-            authDomain: "floodprediction-ceb3f.firebaseapp.com",
-            projectId: "floodprediction-ceb3f",
-            storageBucket: "floodprediction-ceb3f.appspot.com",
-            messagingSenderId: "1013833341623",
-            appId: "1:1013833341623:web:a56da6b5622dd8fe968b32"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
         const signupForm = document.getElementById('signupForm');
         const thankYouMessage = document.getElementById('thankYouMessage');
         const userName = document.getElementById('userName');
         const userPhone = document.getElementById('userPhone');
 
-        // Form Submission Handling
-       signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
 
-    // Get form data
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-
-    // Create a FormData object to send the data via POST
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('address', address);
-
-    try {
-        // Send data to PHP script using fetch
-        const response = await fetch('store_signup.php', {
-            method: 'POST',
-            body: formData
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
         });
 
-        const result = await response.json();
+        // Form Submission Handling
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-        // If the insert is successful, show the thank you message
-        if (result.status === 'success') {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            // Update the thank-you message with user details
             userName.textContent = name;
             userPhone.textContent = phone;
+
+            // Hide form and display thank-you message
             signupForm.style.display = 'none';
             thankYouMessage.style.display = 'block';
-        } else {
-            alert(result.message);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred while saving your data. Please try again later.");
-    }
-});
-
+        });
     </script>
 </body>
 </html>
