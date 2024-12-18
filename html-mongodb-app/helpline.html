@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vadodara Emergency Helplines</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <a href="dashboard.html" class="back-arrow">
+            <img src="backarr50.png" alt="Back"></a>
+        <h1>Vadodara Emergency Helpline Numbers</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
+    </header>
+
+    <main>
+        <h2>Emergency Contact Numbers for Flood-Affected Areas</h2>
+
+        <!-- Modern Table Design (Card-like Layout) -->
+        <div class="table-container">
+            <div class="card">
+                <h3>Fatehgunj</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567890">+91 12345 67890</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654321">+91 19876 54321</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Alkapuri</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567891">+91 12345 67891</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654322">+91 19876 54322</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Akota</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567892">+91 12345 67892</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654323">+91 19876 54323</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Manjalpur</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567893">+91 12345 67893</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654324">+91 19876 54324</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Karelibaug</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567894">+91 12345 67894</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654325">+91 19876 54325</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Gotri</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567895">+91 12345 67895</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654326">+91 19876 54326</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Waghodia</h3>
+                <p>For immediate assistance, call the following helplines:</p>
+                <div class="helpline-number">
+                    <a href="tel:+911234567896">+91 12345 67896</a>
+                </div>
+                <div class="helpline-number">
+                    <a href="tel:+911987654327">+91 19876 54327</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 KHOJ Winter School: IoT Based Flood Detection System. All rights reserved.
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
+
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+    </script>
+
+</body>
+</html>

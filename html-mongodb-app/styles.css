@@ -1,0 +1,629 @@
+/* Root variables for Light and Dark Modes */
+:root {
+    --background-color: #f4f6f9;
+    --text-color: #333;
+    --header-background: #2c3e50;
+    --sidebar-background: #34495e;
+    --card-background: white;
+    --hover-background: #eaf2ff;
+    --primary-color: #4a90e2;
+}
+
+.dark-mode {
+    --background-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --header-background: #121212;
+    --sidebar-background: #252525;
+    --card-background: #2c2c2c;
+    --hover-background: #444;
+    --primary-color: #1abc9c;
+}
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Updated Header Styling for Alignment */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header-background);
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+header h1 {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Back Arrow Styling */
+.back-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.arrow-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.back-arrow:hover .arrow-icon {
+    transform: translateX(-5px);
+}
+
+.mode-toggle {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode-toggle:hover {
+    background-color: #357abf;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--header-background);
+    color: white;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+.container {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    flex: 1;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: var(--sidebar-background);
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: var(--primary-color);
+}
+
+/* Content Section */
+.content {
+    flex: 3;
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content th, .content td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.content th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.content tr:nth-child(even) {
+    background-color: var(--hover-background);
+}
+
+.content tr:hover {
+    background-color: var(--hover-background);
+    cursor: pointer;
+}
+
+/* Right Panel */
+.right-panel {
+    width: 300px;
+    background-color: var(--card-background);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.map-section img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.safety-tips h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.safety-tips ul {
+    padding-left: 20px;
+}
+
+.safety-tips li {
+    margin: 10px 0;
+}
+
+/* Helpline Section */
+.helpline {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.helpline p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Map Section */
+.map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Legend Styling */
+.leaflet-control .info.legend {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.5;
+}
+
+.leaflet-control .info.legend i {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+
+/* Optional: Center-align status column */
+table .status {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Grid Row Status Colors */
+#dataGrid tr {
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+#dataGrid tr:hover {
+    filter: brightness(0.9); /* Slight highlight on hover */
+}
+
+.signup-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8); /* Light white background with opacity */
+}
+
+.signup-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('map.png'); /* Add your image URL here */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2; /* Light opacity for the background image */
+    z-index: -1; /* Ensures the image stays behind the content */
+}
+
+.signup-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.signup-container p {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.signup-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.signup-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.signup-form input, .signup-form select, .signup-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.signup-form input:focus, .signup-form select:focus, .signup-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+.signup-form .button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-form .button:hover {
+    background-color: #357abf;
+}
+
+/* Enhanced Helpline Styling */
+.helpline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.helpline-container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.helpline-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.helpline-container .helpline-number {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: white;
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.helpline-container .helpline-number:hover {
+    background-color: var(--hover-background);
+    color: white;
+}
+
+.helpline-container .helpline-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+/* Enhanced Styling for the Table Container */
+.table-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.helpline-number {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.helpline-number a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.helpline-number:hover {
+    background-color: var(--hover-background);
+    color: white;
+}
+
+.donation-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+body.dark-mode .donation-container {
+    background-color: rgba(33, 33, 33, 0.8);
+}
+
+.donation-container h2 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.donation-container p {
+    margin-bottom: 20px;
+}
+
+.donation-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.donation-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.donation-form input,
+.donation-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.donation-form input:focus,
+.donation-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+.donation-form .button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.donation-form .button:hover {
+    background-color: #357abf;
+}
+
+.qr-container {
+    display: none;
+    text-align: center;
+}
+
+.qr-container img {
+    width: 200px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.qr-container p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+
+@media (max-width: 768px) {
+    .signup-container {
+        padding: 15px;
+    }
+
+    .signup-form input, .signup-form select, .signup-form textarea {
+        font-size: 14px;
+    }
+}
+
+/* Grid for Video Cards */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: start; /* Align videos to the start of their columns */
+}
+
+.video-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-card iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+}
+
+.video-card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.video-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Dark Mode Customizations */
+body.dark-mode .video-card {
+    background-color: #333;
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .video-card p {
+    color: #bbb;
+}
+
+.helpline-container {
+    padding: 20px 10px;
+}
+
+.helpline-container h2 {
+    font-size: 24px;
+}
+
+.helpline-container p {
+    font-size: 16px;
+}
+
+.helpline-container .helpline-number {
+    font-size: 20px;
+    padding: 8px 16px;
+}
+
+.card {
+    width: 100%;
+    padding: 15px;
+}
+
+.card h3 {
+    font-size: 20px;
+}
+
+.card p {
+    font-size: 14px;
+}
+
+.helpline-number {
+    font-size: 16px;
+    padding: 8px;
+}
+
+.donation-container {
+    padding: 15px;
+}
+
+.donation-form input,
+.donation-form textarea {
+    font-size: 14px;
+}

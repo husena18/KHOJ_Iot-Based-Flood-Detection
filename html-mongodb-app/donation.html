@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+    <header>
+        <a href="dashboard.html" class="back-arrow">
+            <img src="backarr50.png"></a>
+        <h1>Donate to Support Flood-Affected Areas</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
+    </header>
+
+    <!-- Helpline Section -->
+    <div class="helpline">
+        <marquee><p>For immediate assistance, call the <strong>Disaster Helpline: 0265-242 7592, Toll-Free - 1077</strong></p></marquee>
+    </div>
+
+    <main class="donation-container">
+        <h2>Your Contribution Can Make a Difference</h2>
+        <p>Please fill in the details below to donate. Every contribution, no matter the amount, helps those in need.</p>
+
+        <!-- Donation Form -->
+        <form id="donationForm" class="donation-form">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Donation Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter the amount to donate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message (Optional):</label>
+                <textarea id="message" name="message" rows="4" placeholder="Include a message or note for the recipient (optional)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <center>
+                    <button type="submit" class="button">Donate Now</button>
+                </center>
+            </div>
+        </form>
+
+        <!-- QR Code Container -->
+        <div class="qr-container" id="qrContainer">
+            <p>Scan the QR Code below to complete your donation:</p>
+            <img src="qr.jpg" alt="QR Code" id="qrCode">
+        </div>
+    </main>
+
+    <footer>
+        &copy; KHOJ Winter School: IoT Based Flood Detection System. All rights reserved.
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
+        const donationForm = document.getElementById('donationForm');
+        const qrContainer = document.getElementById('qrContainer');
+
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+
+        // Handle Form Submission
+        donationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Hide form and display QR code
+            donationForm.style.display = 'none';
+            qrContainer.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

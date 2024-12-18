@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Alert Signup</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styling */
+        body {
+            background-image: url('your-image-url.jpg'); /* Add your background image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .signup-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 15px;
+        }
+
+        .signup-container p {
+            margin-bottom: 20px;
+        }
+
+        .signup-form .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .signup-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .signup-form input, .signup-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .signup-form input:focus, .signup-form textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+        }
+
+        .signup-form .button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup-form .button:hover {
+            background-color: #357abf;
+        }
+
+        .thank-you-message {
+            display: none;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                padding: 15px;
+            }
+
+            .signup-form input, .signup-form textarea {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Flood Alert Signup</h1>
+    </header>
+
+    <main class="signup-container">
+        <h2>Sign Up for Flood Alerts</h2>
+        <p>Enter your details below to receive SMS alerts about floods in your area.</p>
+
+        <!-- Signup Form -->
+        <form action="/post" id="signupForm" class="signup-form" method="post">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{10}" title="Enter a valid 10-digit phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="button">Sign Up</button>
+            </div>
+        </form>
+
+        <!-- Thank You Message -->
+        <div class="thank-you-message" id="thankYouMessage">
+            <p>Thank you for signing up, <span id="userName"></span>! You will receive SMS alerts about floods in your area at <span id="userPhone"></span>.</p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Flood Alert System. All rights reserved.
+    </footer>
+</body>
+</html>
