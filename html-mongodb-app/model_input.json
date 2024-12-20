@@ -1,0 +1,6 @@
+[
+    { "location": "Fatehgunj", "rainfall": 120, "status": "danger" },
+    { "location": "Akota", "rainfall": 85, "status": "warning" },
+    { "location": "Alkapuri", "rainfall": 50, "status": "safe" },
+    { "location": "Sayajiganj", "rainfall": 70, "status": "warning" }
+]

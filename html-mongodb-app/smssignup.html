@@ -14,12 +14,11 @@
             background-attachment: fixed;
             font-family: Arial, sans-serif;
             margin: 0;
-            color: #333;
+            color: #121212;
         }
 
         body.dark-mode {
             background-color: #121212;
-            color: white;
         }
 
         .signup-container {
@@ -40,6 +39,7 @@
 
         .signup-container p {
             margin-bottom: 20px;
+            color: #121212;
         }
 
         .signup-form .form-group {
@@ -100,7 +100,11 @@
 </head>
 <body>
     <header>
+        <a href="dashboard.html" class="back-arrow">
+            <img src="backarr50.png" alt="Back"></a>
+        
         <h1>Flood Alert Signup</h1>
+        <button class="mode-toggle" id="modeSwitch">Switch to Dark Mode</button>
     </header>
 
     <main class="signup-container">
@@ -129,7 +133,7 @@
                     <option value="Sayajiganj">Sayajiganj</option>
                     <option value="Sama">Sama</option>
                     <option value="Mujmahuda">Mujmahuda</option>
-                    <option value="vadsar">vadsar</option>
+                    <option value="vadsar">Vadsar</option>
                     <option value="Kalali">Kalali</option>
                     <option value="Karelibaug">Karelibaug</option>
                     <option value="Harni">Harni</option>
@@ -150,8 +154,27 @@
         </div>
     </main>
 
+
+
     <footer>
         &copy; 2024 Flood Alert System. All rights reserved.
     </footer>
+
+    <script>
+        const modeToggle = document.getElementById("modeSwitch");
+        const body = document.body;
+
+        // Handle Dark Mode
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "Switch to Light Mode";
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+    </script>
 </body>
 </html>

@@ -50,22 +50,91 @@
                     <td class="status" data-status="danger">Danger</td>
                 </tr>
                 <tr>
-                    <td>Alkapuri</td>
+                    <td>Akota</td>
                     <td>+02345 67892</td>
                     <td>45</td>
                     <td>13-12-24 17:10</td>
                     <td class="status" data-status="warning">Warning</td>
                 </tr>
                 <tr>
-                    <td>Akota</td>
+                    <td>Alkapuri</td>
                     <td>+02345 67893</td>
                     <td>20</td>
                     <td>13-12-24 17:20</td>
                     <td class="status" data-status="safe">Safe</td>
                 </tr>
+                <tr>
+                    <td>Sayajiganj</td>
+                    <td>+02345 67894</td>
+                    <td>30</td>
+                    <td>13-12-24 17:30</td>
+                    <td class="status" data-status="safe">Safe</td>
+                </tr>
+                <tr>
+                    <td>Sama</td>
+                    <td>+02345 67895</td>
+                    <td>50</td>
+                    <td>13-12-24 17:40</td>
+                    <td class="status" data-status="warning">Warning</td>
+                </tr>
+                <tr>
+                    <td>Mujmahuda</td>
+                    <td>+02345 67896</td>
+                    <td>60</td>
+                    <td>13-12-24 17:50</td>
+                    <td class="status" data-status="danger">Danger</td>
+                </tr>
+                <tr>
+                    <td>Vadsar</td>
+                    <td>+02345 67897</td>
+                    <td>25</td>
+                    <td>13-12-24 18:00</td>
+                    <td class="status" data-status="safe">Safe</td>
+                </tr>
+                <tr>
+                    <td>Kalali</td>
+                    <td>+02345 67898</td>
+                    <td>40</td>
+                    <td>13-12-24 18:10</td>
+                    <td class="status" data-status="warning">Warning</td>
+                </tr>
+                <tr>
+                    <td>Karelibaug</td>
+                    <td>+02345 67899</td>
+                    <td>55</td>
+                    <td>13-12-24 18:20</td>
+                    <td class="status" data-status="danger">Danger</td>
+                </tr>
+                <tr>
+                    <td>Harni</td>
+                    <td>+02345 67900</td>
+                    <td>35</td>
+                    <td>13-12-24 18:30</td>
+                    <td class="status" data-status="safe">Safe</td>
+                </tr>
+                <tr>
+                    <td>Jetalpur</td>
+                    <td>+02345 67901</td>
+                    <td>70</td>
+                    <td>13-12-24 18:40</td>
+                    <td class="status" data-status="danger">Danger</td>
+                </tr>
+                <tr>
+                    <td>Pratapganj</td>
+                    <td>+02345 67902</td>
+                    <td>65</td>
+                    <td>13-12-24 18:50</td>
+                    <td class="status" data-status="danger">Danger</td>
+                </tr>
+                <tr>
+                    <td>Manjalpur</td>
+                    <td>+02345 67903</td>
+                    <td>20</td>
+                    <td>13-12-24 19:00</td>
+                    <td class="status" data-status="safe">Safe</td>
+                </tr>
             </table>
-        </section>
-        
+        </section>        
 
         <!-- Right Panel -->
         <aside class="right-panel">
@@ -92,127 +161,133 @@
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script>
-        const modeToggle = document.getElementById("modeSwitch");
-        const body = document.body;
-    
-        // Handle Dark Mode
-        if (localStorage.getItem("theme") === "dark") {
-            body.classList.add("dark-mode");
-            modeToggle.textContent = "Switch to Light Mode";
-        }
-    
-        modeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
-            modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+<script>
+    const modeToggle = document.getElementById("modeSwitch");
+    const body = document.body;
+
+    // Handle Dark Mode
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+        modeToggle.textContent = "Switch to Light Mode";
+    }
+
+    modeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+        modeToggle.textContent = body.classList.contains("dark-mode") ? "Switch to Light Mode" : "Switch to Dark Mode";
+    });
+
+    // Update the row colors based on the status column
+    const updateRowColors = () => {
+        const rows = document.querySelectorAll('#dataGrid tr');
+        rows.forEach((row, index) => {
+            if (index === 0) return; // Skip the header row
+            const statusCell = row.cells[4]; // The status column
+            const status = statusCell.dataset.status;
+
+            if (status === "danger") {
+                row.style.backgroundColor = "rgba(255, 0, 0, 0.2)"; // Light red
+            } else if (status === "warning") {
+                row.style.backgroundColor = "rgba(255, 165, 0, 0.2)"; // Light orange
+            } else if (status === "safe") {
+                row.style.backgroundColor = "rgba(0, 128, 0, 0.2)"; // Light green
+            } else {
+                row.style.backgroundColor = ""; // Default for undefined statuses
+            }
         });
-    
-        // Update the row colors based on the status column
-        const updateRowColors = () => {
-            const rows = document.querySelectorAll('#dataGrid tr');
-    
-            rows.forEach((row, index) => {
-                if (index === 0) return; // Skip the header row
-    
-                const statusCell = row.cells[4]; // The status column
-                const status = statusCell.dataset.status;
-    
-                if (status === "danger") {
-                    row.style.backgroundColor = "rgba(255, 0, 0, 0.2)"; // Light red
-                } else if (status === "warning") {
-                    row.style.backgroundColor = "rgba(255, 165, 0, 0.2)"; // Light orange
-                } else if (status === "safe") {
-                    row.style.backgroundColor = "rgba(0, 128, 0, 0.2)"; // Light green
-                } else {
-                    row.style.backgroundColor = ""; // Default for undefined statuses
-                }
-            });
-        };
-    
-        // Initial row color update
+    };
+
+    // Initial row color update
+    updateRowColors();
+
+    // Update row colors whenever the grid is modified
+    const observer = new MutationObserver(() => {
         updateRowColors();
-    
-        // Update row colors whenever the grid is modified
-        const observer = new MutationObserver(() => {
-            updateRowColors();
+    });
+
+    observer.observe(document.getElementById('dataGrid'), {
+        childList: true,
+        subtree: true,
+    });
+
+    // Leaflet.js Map Setup
+    const map = L.map('map').setView([22.3072, 73.1812], 13); // Vadodara coordinates
+
+    // Add map tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Function to update map markers dynamically
+    const updateMap = () => {
+        const rows = document.querySelectorAll('#dataGrid tr');
+        const zones = [];
+
+        rows.forEach((row, index) => {
+            if (index === 0) return; // Skip header row
+
+            const location = row.cells[0].textContent.trim();
+            const rainfall = parseInt(row.cells[2].textContent, 10);
+            const status = row.cells[4].dataset.status;
+
+            const coords = getCoordinates(location); // Get coordinates for the location
+
+            if (coords) {
+                zones.push({ location, rainfall, status, coords });
+            }
         });
-    
-        observer.observe(document.getElementById('dataGrid'), {
-            childList: true,
-            subtree: true,
+
+        // Clear existing layers (markers or rectangles)
+        map.eachLayer((layer) => {
+            if (layer.options && layer.options.pane === "markerPane") map.removeLayer(layer);
         });
-    
-        // Leaflet.js Map Setup
-        const map = L.map('map').setView([22.3072, 73.1812], 13); // Vadodara coordinates
-    
-        // Add map tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-    
-        // Function to update map markers dynamically
-        const updateMap = () => {
-            const rows = document.querySelectorAll('#dataGrid tr');
-            const zones = [];
-    
-            rows.forEach((row, index) => {
-                if (index === 0) return; // Skip header row
-    
-                const location = row.cells[0].textContent.trim();
-                const rainfall = parseInt(row.cells[2].textContent, 10);
-                const status = row.cells[4].dataset.status;
-    
-                const coords = getCoordinates(location); // Get coordinates for the location
-    
-                if (coords) {
-                    zones.push({ location, rainfall, status, coords });
-                }
-            });
-    
-            // Clear existing layers (markers or rectangles)
-            map.eachLayer((layer) => {
-                if (layer.options && layer.options.pane === "markerPane") map.removeLayer(layer);
-            });
-    
-            // Add rectangles for each zone
-            zones.forEach((zone) => {
-                const color = zone.status === "danger" ? "red" :
-                              zone.status === "warning" ? "orange" : "green";
-    
-                const [lat, lng] = zone.coords;
-    
-                // Define rectangle bounds
-                const bounds = [
-                    [lat - 0.002, lng - 0.002], // Southwest corner
-                    [lat + 0.002, lng + 0.002]  // Northeast corner
-                ];
-    
-                // Add rectangle to the map
-                L.rectangle(bounds, {
-                    color,
-                    fillColor: color,
-                    fillOpacity: 0.5,
-                })
-                .addTo(map)
-                .bindPopup(`${zone.location}: <strong>${zone.status.toUpperCase()}</strong>`);
-            });
+
+        // Add rectangles for each zone
+        zones.forEach((zone) => {
+            const color = zone.status === "danger" ? "red" :
+                          zone.status === "warning" ? "orange" : "green";
+
+            const [lat, lng] = zone.coords;
+
+            // Define rectangle bounds
+            const bounds = [
+                [lat - 0.002, lng - 0.002], // Southwest corner
+                [lat + 0.002, lng + 0.002]  // Northeast corner
+            ];
+
+            // Add rectangle to the map
+            L.rectangle(bounds, {
+                color,
+                fillColor: color,
+                fillOpacity: 0.5,
+            })
+            .addTo(map)
+            .bindPopup(`${zone.location}: <strong>${zone.status.toUpperCase()}</strong>`);
+        });
+    };
+
+    // Function for getting coordinates based on location
+    const getCoordinates = (location) => {
+        const locations = {
+            "Fatehgunj": [22.3072, 73.1812],
+            "Akota": [22.3074, 73.1878],
+            "Alkapuri": [22.3120, 73.1788],
+            "Sayajiganj": [22.3083, 73.1800],
+            "Sama": [22.3295, 73.1861],
+            "Mujmahuda": [22.3009, 73.1910],
+            "Vadsar": [22.2940, 73.2065],
+            "Kalali": [22.2991, 73.2110],
+            "Karelibaug": [22.3202, 73.1875],
+            "Harni": [22.3374, 73.2054],
+            "Jetalpur": [22.3077, 73.1718],
+            "Pratapganj": [22.3119, 73.1902],
+            "Manjalpur": [22.2913, 73.2013],
         };
-    
-        // Example function for getting coordinates based on location
-        const getCoordinates = (location) => {
-            const locations = {
-                "Fatehgunj": [22.3072, 73.1812],
-                "Alkapuri": [22.3120, 73.1788],
-                "Akota": [22.3074, 73.1878],
-            };
-            return locations[location] || null;
-        };
-    
-        // Initial map update
-        updateMap();
-    </script>
-    
-    
-</body>
-</html>
+
+        // Fallback for undefined locations
+        return locations[location] || [22.3072, 73.1812]; // Default to Vadodara center
+    };
+
+    // Initial map update
+    updateMap();
+</script>
