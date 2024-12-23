@@ -1,11 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
-const port = 3020
+const bodyParser = require("body-parser")
+const port = 3019
 
 const app = express();
 app.use(express.static(__dirname))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ exteded: true }))
+app.use(bodyParser.json())
 
 mongoose.connect('mongodb://127.0.0.1:27017/SMSsignup')
 const db = mongoose.connection
@@ -26,6 +28,15 @@ const Users = mongoose.model('data', userSchema)
 // Serve the HTML form
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
+})
+
+app.post("/get_data", async(req, res) => {
+    const data = req.body
+    console.log(data)
+    res.json({
+        status:"success"
+    })
+    
 })
 
 // Handle form submission
